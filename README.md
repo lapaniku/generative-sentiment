@@ -31,5 +31,18 @@ docker compose up
 and open http://127.0.0.1:8888/lab. The `/work` will containt all project files. In this case `data-generation.ipynb` should be opened and executed.
 To do it without interuptions the `OPENAI_API_KEY` environment variable is expected to be set or specified in `.env` file.
 
-## Training and evaluation
+## Training
 
+<a target="_blank" href="https://colab.research.google.com/github/lapaniku/generative-sentiment/blob/main/train.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+Since I don't expect running training locally I recommend using Collab for model training that can be executed end-to-end until HuggingFace token is requested to update model repository that can be skipped. 
+
+## Evaluation
+
+<a target="_blank" href="https://colab.research.google.com/github/lapaniku/generative-sentiment/blob/main/evaluation.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+Just like training it uses prepared Gist to download evaluation data so notebook can be executed end-to-end. 
