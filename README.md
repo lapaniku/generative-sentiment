@@ -27,16 +27,18 @@ The project aims to create a dataset of generated customer tickets with correspo
 
 ## Data generation
 
-Due to several considerations like the following:
-- it is supposed to be a long task so I need to keep track of checkpoints and iterate quickly
+Due to the following reasons:
+- data generation is supposed to be a long task so I need to keep track of checkpoints and iterate quickly
 - I need to share a sensitive data like API Key so I would prefer running something locally if it's possible
 
-To start Jupyter Lab just run:
+I've started with running local Jupyter Lab and setting up project for it. 
+
+To start Jupyter Lab:
 ```shell
 docker compose build
 docker compose up
 ```
-and open http://127.0.0.1:8888/lab. The `/work` will containt all project files. In this case `data-generation.ipynb` should be opened and executed.
+then open http://127.0.0.1:8888/lab. The `/work` will containt all project files. In this case `data-generation.ipynb` should be opened and executed.
 To do it without interuptions the `OPENAI_API_KEY` environment variable is expected to be set or specified in `.env` file.
 
 ## Training
