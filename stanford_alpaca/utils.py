@@ -8,7 +8,7 @@ import time
 import json
 from typing import Optional, Sequence, Union, Any
 
-from openai import OpenAI
+from openai import OpenAI, OpenAIError
 import tqdm
 # from openai import openai_object
 import copy
@@ -40,7 +40,7 @@ def openai_completion(
     prompts: Union[str, Sequence[str], Sequence[dict[str, str]], dict[str, str]],
     decoding_args: OpenAIDecodingArguments,
     model_name="text-davinci-003",
-    sleep_time=2,
+    sleep_time=20,
     batch_size=1,
     max_instances=sys.maxsize,
     max_batches=sys.maxsize,
@@ -106,6 +106,7 @@ def openai_completion(
                 )
                 client = OpenAI()
                 
+
                 for prompt in prompt_batch:
                     messages = [
                         {"role": "system", "content": "You are a helpful assistant."},
@@ -118,7 +119,7 @@ def openai_completion(
                     #     choice["total_tokens"] = completion_batch.usage.total_tokens
                     completions.extend(choices)
                 break
-            except openai.error.OpenAIError as e:
+            except OpenAIError as e:
                 logging.warning(f"OpenAIError: {e}.")
                 if "Please reduce your prompt" in str(e):
                     batch_decoding_args.max_tokens = int(batch_decoding_args.max_tokens * 0.8)

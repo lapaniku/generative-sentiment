@@ -41,7 +41,7 @@ def encode_prompt(prompt_instructions):
     return prompt
 
 
-def post_process_gpt3_response(num_prompt_instructions, response):
+def post_process_gpt4_response(num_prompt_instructions, response):
     if response is None:
         return []
     raw_instructions = f"{num_prompt_instructions+1}. Instruction:" + response.message.content
@@ -159,10 +159,11 @@ def generate_instruction_following_data(
         decoding_args = utils.OpenAIDecodingArguments(
             temperature=temperature,
             n=1,
-            max_tokens=3072,  # hard-code to maximize the length. the requests will be automatically adjusted
+            max_tokens=16000,  # hard-code to maximize the length. the requests will be automatically adjusted
             top_p=top_p,
             stop=["\n20", "20.", "20."],
         )
+        print("Sending OpenAI request")
         request_start = time.time()
         results = utils.openai_completion(
             prompts=batch_inputs,
@@ -172,11 +173,12 @@ def generate_instruction_following_data(
             logit_bias={"50256": -100},  # prevent the <|endoftext|> token from being generated
         )
         request_duration = time.time() - request_start
-
+        print(f"Received response in {request_duration}")
+        
         process_start = time.time()
         instruction_data = []
         for result in results:
-            new_instructions = post_process_gpt3_response(num_prompt_instructions, result)
+            new_instructions = post_process_gpt4_response(num_prompt_instructions, result)
             instruction_data += new_instructions
 
         total = len(instruction_data)
