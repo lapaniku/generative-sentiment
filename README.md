@@ -54,3 +54,7 @@ Since I don't expect running training locally I recommend using Collab for model
 </a>
 
 Just like training it uses prepared Gist to download evaluation data so notebook can be executed end-to-end. 
+
+## Deployment
+
+Deployment considerations [document](DEPLOYMENT.md)
