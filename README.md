@@ -1,4 +1,4 @@
-# generative-sentiment
+# Generative Sentiment
 
 The project aims to create a dataset of generated customer tickets with corresponding sentiment defined by the following list
 ‘Strong Negative’, ‘Mild Negative’, ‘Neutral’, ‘Mild Positive’, ‘Strong Positive’.
@@ -6,15 +6,23 @@ The project aims to create a dataset of generated customer tickets with correspo
 ## Repository Structure
 
 ```plaintext
-/stanford_alpaca
-│
-├── .gitignore              # Specifies files and directories that should be ignored by Git
-├── Dockerfile              # Dockerfile for building a Docker image to run the data generation notebook
-├── README.md               # This README file providing an overview and instructions
-├── data-generation.ipynb   # Jupyter notebook for generating data for training the model
-├── docker-compose.yml      # Docker Compose file for setting up and Jupyter Lab
-├── evaluation.ipynb        # Jupyter notebook for evaluating the trained models
-└── train.ipynb             # Jupyter notebook for training the sentiment classification model
+/
+├── /stanford_alpaca            # Utilities to orchestrate ticket generation
+├──── generate_instruction.py   # Ticket generation tool borrowed from Stanford Alpaca project
+├──── prompt.txt                # Prompt header for ticket generation
+├──── regen.json                # Generated tickets
+├──── regen_train.json          # Training sample
+├──── regen_valid.json          # Validation sample
+├──── requirements.txt          # generation requirements
+├──── seed_tasks.jsonl          # Seed ticket selection
+├──── utils.py                  # OpenAI requesting utils
+├── .gitignore                  # Specifies files and directories that should be ignored by Git
+├── Dockerfile                  # Dockerfile for building a Docker image to run the data generation notebook
+├── README.md                   # This README file providing an overview and instructions
+├── data-generation.ipynb       # Jupyter notebook for generating data for training the model
+├── docker-compose.yml          # Docker Compose file for setting up and Jupyter Lab
+├── evaluation.ipynb            # Jupyter notebook for evaluating the trained models
+└── train.ipynb                 # Jupyter notebook for training the sentiment classification model
 ```
 
 ## Data generation
